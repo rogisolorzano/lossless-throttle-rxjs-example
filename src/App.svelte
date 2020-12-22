@@ -1,23 +1,23 @@
 <script lang="ts">
-	import {ThrottlingStrategy, startSubscription} from "./startSubscription";
-	import {Subscription} from "rxjs";
+  import {ThrottlingStrategy, startSubscription} from "./startSubscription";
+  import {Subscription} from "rxjs";
 
-	let subscription: Subscription;
-	let numbers: number[] = [];
-	let currentStrategy = ThrottlingStrategy.NONE;
+  let subscription: Subscription;
+  let numbers: number[] = [];
+  let currentStrategy = ThrottlingStrategy.NONE;
 
-	const next = (n: number) => {
-		numbers = [...numbers, n];
-	}
+  const next = (n: number) => {
+    numbers = [...numbers, n];
+  }
 
-	const switchThrottlingStrategy = (strategy: ThrottlingStrategy) => () => {
-		subscription.unsubscribe();
-		numbers = [];
-		currentStrategy = strategy;
-		subscription = startSubscription(strategy, next);
-	};
+  const switchThrottlingStrategy = (strategy: ThrottlingStrategy) => () => {
+    subscription.unsubscribe();
+    numbers = [];
+    currentStrategy = strategy;
+    subscription = startSubscription(strategy, next);
+  };
 
-	subscription = startSubscription(ThrottlingStrategy.NONE, next);
+  subscription = startSubscription(ThrottlingStrategy.NONE, next);
 </script>
 
 <main>
