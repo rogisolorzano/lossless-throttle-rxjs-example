@@ -1,6 +1,6 @@
 <script lang="ts">
-  import {ThrottlingStrategy, startSubscription} from "./startSubscription";
-  import {Subscription} from "rxjs";
+  import { ThrottlingStrategy, startSubscription } from "./startSubscription";
+  import type { Subscription } from "rxjs";
 
   let subscription: Subscription;
   let numbers: number[] = [];
